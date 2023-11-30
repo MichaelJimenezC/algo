@@ -4,11 +4,13 @@
  */
 package espol.utilidades;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Lenovo
  */
-public class Node<E> {
+public class Node<E> implements Serializable{
 
     private E content;
     private Node<E> next;

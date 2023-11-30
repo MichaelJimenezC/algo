@@ -4,19 +4,23 @@
  */
 package Objetos;
 
+import espol.utilidades.LinkedList;
+import java.io.Serializable;
+
 /**
  *
  * @author Lenovo
  */
-public class ContactoPersona extends Contacto{
+public class ContactoPersona extends Contacto implements Serializable{
         private String apellido;
         private String fechaCumpleanos;
+
+    public ContactoPersona(String apellido, String fechaCumpleanos, String nombre, LinkedList foto, LinkedList direccion, LinkedList emailPersonal, LinkedList numerosTelefonicos, LinkedList redesSociales) {
+        super(nombre, foto, direccion, emailPersonal, numerosTelefonicos, redesSociales);
+        this.apellido = apellido;
+        this.fechaCumpleanos = fechaCumpleanos;
         
-        public ContactoPersona(String nombre, String apellido, String numeroTelefono, String foto, String direccion, String emailPersonal, String fechaCumpleaños) {
-            super(nombre, numeroTelefono, foto, direccion, emailPersonal);
-            this.apellido = apellido;
-            this.fechaCumpleanos = fechaCumpleanos;
-        }
+    }
 
     public String getApellido() {
         return apellido;
@@ -33,6 +37,8 @@ public class ContactoPersona extends Contacto{
     public void setFechaCumpleanos(String fechaCumpleanos) {
         this.fechaCumpleanos = fechaCumpleanos;
     }
+    
+       
         
         
 }

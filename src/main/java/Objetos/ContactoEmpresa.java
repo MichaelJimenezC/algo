@@ -4,16 +4,18 @@
  */
 package Objetos;
 
+import espol.utilidades.LinkedList;
+import java.io.Serializable;
+
 /**
  *
  * @author Lenovo
  */
-public class ContactoEmpresa extends Contacto{
+public class ContactoEmpresa extends Contacto implements Serializable{
     private String paginaweb;
 
-    // Constructor
-    public ContactoEmpresa(String nombre, String numeroTelefono, String foto, String direccion, String emailPersonal, String paginaweb) {
-        super(nombre, numeroTelefono, foto, direccion, emailPersonal);
+    public ContactoEmpresa(String paginaweb, String nombre, LinkedList foto, LinkedList direccion, LinkedList emailPersonal, LinkedList numerosTelefonicos, LinkedList redesSociales) {
+        super(nombre, foto, direccion, emailPersonal, numerosTelefonicos, redesSociales);
         this.paginaweb = paginaweb;
     }
 
@@ -24,5 +26,7 @@ public class ContactoEmpresa extends Contacto{
     public void setPaginaweb(String paginaweb) {
         this.paginaweb = paginaweb;
     }
+
+   
     
 }

@@ -5,6 +5,7 @@
 package Objetos;
 
 import espol.utilidades.ArrayList;
+import espol.utilidades.LinkedList;
 import java.util.Date;
 import espol.utilidades.List;
 import java.io.Serializable;
@@ -14,24 +15,21 @@ import java.io.Serializable;
  */
 public class Contacto implements Serializable{
     private String nombre;
-    private String numeroTelefono;
-    private String foto;
-    private String direccion;
-    private String emailPersonal;
-    private List<String> numerosTelefonicos;
-    private List<String> redesSociales;
-    private List<Contacto> contactosRelacionados;
+    private LinkedList foto;
+    private LinkedList direccion;
+    private LinkedList emailPersonal;
+    private LinkedList numerosTelefonicos;
+    private LinkedList redesSociales;
+    private LinkedList contactosRelacionados;
 
-    // Constructor
-    public Contacto(String nombre, String numeroTelefono, String foto, String direccion, String emailPersonal ) {
+    public Contacto(String nombre, LinkedList foto, LinkedList direccion, LinkedList emailPersonal, LinkedList numerosTelefonicos, LinkedList redesSociales ) {
         this.nombre = nombre;
-        this.numeroTelefono = numeroTelefono;
         this.foto = foto;
         this.direccion = direccion;
         this.emailPersonal = emailPersonal;
-        this.numerosTelefonicos = new ArrayList<>();
-        this.redesSociales = new ArrayList<>();
-        this.contactosRelacionados = new ArrayList<>();
+        this.numerosTelefonicos = numerosTelefonicos;
+        this.redesSociales = redesSociales;
+        this.contactosRelacionados = new LinkedList<>();
     }
 
     public String getNombre() {
@@ -42,59 +40,53 @@ public class Contacto implements Serializable{
         this.nombre = nombre;
     }
 
-    public String getNumeroTelefono() {
-        return numeroTelefono;
-    }
-
-    public void setNumeroTelefono(String numeroTelefono) {
-        this.numeroTelefono = numeroTelefono;
-    }
-
-    public String getFoto() {
+    public LinkedList getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(LinkedList foto) {
         this.foto = foto;
     }
 
-    public String getDireccion() {
+    public LinkedList getDireccion() {
         return direccion;
     }
 
-    public void setDireccion(String direccion) {
+    public void setDireccion(LinkedList direccion) {
         this.direccion = direccion;
     }
 
-    public String getEmailPersonal() {
+    public LinkedList getEmailPersonal() {
         return emailPersonal;
     }
 
-    public void setEmailPersonal(String emailPersonal) {
+    public void setEmailPersonal(LinkedList emailPersonal) {
         this.emailPersonal = emailPersonal;
     }
 
-    public List<String> getNumerosTelefonicos() {
+    public LinkedList getNumerosTelefonicos() {
         return numerosTelefonicos;
     }
 
-    public void setNumerosTelefonicos(List<String> numerosTelefonicos) {
+    public void setNumerosTelefonicos(LinkedList numerosTelefonicos) {
         this.numerosTelefonicos = numerosTelefonicos;
     }
 
-    public List<String> getRedesSociales() {
+    public LinkedList getRedesSociales() {
         return redesSociales;
     }
 
-    public void setRedesSociales(List<String> redesSociales) {
+    public void setRedesSociales(LinkedList redesSociales) {
         this.redesSociales = redesSociales;
     }
 
-    public List<Contacto> getContactosRelacionados() {
+    public LinkedList getContactosRelacionados() {
         return contactosRelacionados;
     }
 
-    public void setContactosRelacionados(List<Contacto> contactosRelacionados) {
+    public void setContactosRelacionados(LinkedList contactosRelacionados) {
         this.contactosRelacionados = contactosRelacionados;
     }
+    
+
 }
