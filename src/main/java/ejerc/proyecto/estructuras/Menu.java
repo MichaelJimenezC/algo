@@ -45,6 +45,7 @@ public class Menu extends Application {
             CrearContacto VentanaContacto = new CrearContacto();
             VentanaContacto.start(new Stage());
         } catch (Exception ex) {
+            System.out.println(ex);
         }
     }
       

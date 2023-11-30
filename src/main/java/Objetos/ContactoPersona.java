@@ -4,6 +4,7 @@
  */
 package Objetos;
 
+import espol.utilidades.DoubleLinkedList;
 import espol.utilidades.LinkedList;
 import java.io.Serializable;
 
@@ -15,7 +16,7 @@ public class ContactoPersona extends Contacto implements Serializable{
         private String apellido;
         private String fechaCumpleanos;
 
-    public ContactoPersona(String apellido, String fechaCumpleanos, String nombre, LinkedList foto, LinkedList direccion, LinkedList emailPersonal, LinkedList numerosTelefonicos, LinkedList redesSociales) {
+    public ContactoPersona(String apellido, String fechaCumpleanos, String nombre, DoubleLinkedList foto, LinkedList direccion, LinkedList emailPersonal, LinkedList numerosTelefonicos, LinkedList redesSociales) {
         super(nombre, foto, direccion, emailPersonal, numerosTelefonicos, redesSociales);
         this.apellido = apellido;
         this.fechaCumpleanos = fechaCumpleanos;

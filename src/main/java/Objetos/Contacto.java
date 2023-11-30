@@ -5,6 +5,7 @@
 package Objetos;
 
 import espol.utilidades.ArrayList;
+import espol.utilidades.DoubleLinkedList;
 import espol.utilidades.LinkedList;
 import java.util.Date;
 import espol.utilidades.List;
@@ -15,14 +16,14 @@ import java.io.Serializable;
  */
 public class Contacto implements Serializable{
     private String nombre;
-    private LinkedList foto;
+    private DoubleLinkedList foto;
     private LinkedList direccion;
     private LinkedList emailPersonal;
     private LinkedList numerosTelefonicos;
     private LinkedList redesSociales;
     private LinkedList contactosRelacionados;
 
-    public Contacto(String nombre, LinkedList foto, LinkedList direccion, LinkedList emailPersonal, LinkedList numerosTelefonicos, LinkedList redesSociales ) {
+    public Contacto(String nombre, DoubleLinkedList foto, LinkedList direccion, LinkedList emailPersonal, LinkedList numerosTelefonicos, LinkedList redesSociales ) {
         this.nombre = nombre;
         this.foto = foto;
         this.direccion = direccion;
@@ -40,11 +41,11 @@ public class Contacto implements Serializable{
         this.nombre = nombre;
     }
 
-    public LinkedList getFoto() {
+    public DoubleLinkedList getFoto() {
         return foto;
     }
 
-    public void setFoto(LinkedList foto) {
+    public void setFoto(DoubleLinkedList foto) {
         this.foto = foto;
     }
 
