@@ -5,12 +5,14 @@
 package espol.utilidades;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -21,7 +23,6 @@ public class DoubleLinkedList<E> implements List<E>, Serializable {
     Nodo<E> primero;
     Nodo<E> ultimo;
     int n;
-    
 
     private static class Nodo<E> implements Serializable {
 
@@ -103,16 +104,6 @@ public class DoubleLinkedList<E> implements List<E>, Serializable {
                 throw new UnsupportedOperationException();
             }
         };
-    }
-
-    @Override
-    public Object[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public <T> T[] toArray(T[] a) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -380,7 +371,16 @@ public class DoubleLinkedList<E> implements List<E>, Serializable {
 
             @Override
             public void set(E e) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                if (currentIndex < 0 || currentIndex >= n) {
+                    throw new IllegalStateException("Invalid state for set operation");
+                }
+
+                Nodo<E> nodeToSet = primero;
+                for (int i = 0; i < currentIndex; i++) {
+                    nodeToSet = nodeToSet.sig;
+                }
+
+                nodeToSet.contenido = e;
             }
 
             @Override
@@ -452,6 +452,69 @@ public class DoubleLinkedList<E> implements List<E>, Serializable {
     @Override
     public String toString() {
         return "DoubleLinkedList{" + "n=" + n + '}';
+    }
+
+    public E find(Comparator<E> comparator, E encontrar) {
+        if (isEmpty()) {
+            return null;
+        }
+
+        Nodo<E> actual = primero;
+        do {
+            if (comparator.compare(actual.contenido, encontrar) == 0) {
+                return actual.contenido;
+            }
+            actual = actual.sig;
+        } while (actual != primero);
+
+        return null;
+    }
+
+    public DoubleLinkedList<E> findAll(Comparator<E> comparator, E encontrar) {
+        DoubleLinkedList<E> encontrados = new DoubleLinkedList<>();
+        if (isEmpty()) {
+            return encontrados;
+        }
+
+        Nodo<E> actual = primero;
+        do {
+            if (comparator.compare(actual.contenido, encontrar) == 0) {
+                encontrados.add(actual.contenido);
+            }
+            actual = actual.sig;
+        } while (actual != primero);
+
+        return encontrados;
+    }
+
+    @Override
+    public Object[] toArray() {
+        Object[] array = new Object[n];
+        Nodo<E> actual = primero;
+
+        for (int i = 0; i < n; i++) {
+            array[i] = actual.contenido;
+            actual = actual.sig;
+        }
+
+        return array;
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+        if (a.length < n) {
+            // Si el array proporcionado es más pequeño, se crea uno nuevo del mismo tipo
+            a = (T[]) Arrays.copyOf(toArray(), n, a.getClass());
+        } else {
+            // Si el array proporcionado es lo suficientemente grande, se copian los elementos
+            System.arraycopy(toArray(), 0, a, 0, n);
+        }
+
+        if (n < a.length) {
+            a[n] = null; // Establece el elemento siguiente a null
+        }
+
+        return a;
     }
 
 }

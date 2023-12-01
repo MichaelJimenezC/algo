@@ -61,8 +61,8 @@ public class CrearContacto extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        imgv.setFitWidth(50);
-        imgv.setFitHeight(50);
+        imgv.setFitWidth(100);
+        imgv.setFitHeight(100);
 
         Label label = new Label("Nuevo Contacto");
         Font fuente = Font.font("Verdana", FontWeight.EXTRA_BOLD, 25);
@@ -225,11 +225,16 @@ public class CrearContacto extends Application {
                 for (Usuario usuario : App.listaUsuarios) {
                     System.out.println(usuario);
                     if (usuario.equals(App.usuario)) {
-                        if (!usuario.getContactos().contains(nuevoContactoPersona)) {
-                            usuario.getContactos().add(nuevoContactoPersona);
+                        if (!usuario.getContactos().isEmpty()) {
+                            if (!usuario.getContactos().contains(nuevoContactoPersona)) {
+                                usuario.getContactos().add(nuevoContactoPersona);
 
-                            break;
+                                break;
+                            }
+                        }else{
+                            usuario.getContactos().add(nuevoContactoPersona);
                         }
+
                     }
                 }
                 Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");

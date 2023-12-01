@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     public static Usuario usuario = null;
-    public static ArrayList<Usuario> listaUsuarios = Archivos.deserializarListaUsuarios("usuarios.ser");
+    public static ArrayList<Usuario> listaUsuarios =Archivos.deserializarListaUsuarios("usuarios.ser");
 
     @Override
     public void start(Stage stage) throws Exception {

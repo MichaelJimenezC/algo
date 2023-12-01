@@ -10,9 +10,15 @@ import Objetos.ContactoPersona;
 import espol.utilidades.DoubleLinkedList;
 import java.util.ListIterator;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -39,15 +45,33 @@ public class verContactos extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        root.getChildren().add(cajaContacto);
-        if (!contactos.isEmpty()) {
-            if (iterator.hasNext()) {
-                System.out.println("hola");
-                Contacto c = iterator.next();
-                mostrarContactoActual(c);
+        HBox busqueda=new HBox();
+        ObservableList<String> opciones = FXCollections.observableArrayList(
+                "Pais", "Cantidad Atributos", "Tipo Contacto"
+        );
+        ComboBox<String> comboBox = new ComboBox<>(opciones);
+        comboBox.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Obtener el elemento seleccionado
+                String seleccion = comboBox.getSelectionModel().getSelectedItem();
+                if (seleccion.equals("Pais")) {
+                    Contacto.ordenarPorPaisResidencia(contactos);
+                } else if (seleccion.equals("Cantidad Atributos")) {
+                    Contacto.ordenarPorCantidadAtributos(contactos);
+                } else if (seleccion.equals("Tipo Contacto")) {
+                    Contacto.ordenarPorTipoContacto(contactos);
+                }
+                cajaContacto.getChildren().clear();
+                mostrarPrimero();
 
             }
-        }
+        });
+        TextField txtBusqueda=new TextField();
+        Button buscar=new Button();
+        busqueda.getChildren().addAll(comboBox,txtBusqueda,buscar);
+        root.getChildren().addAll(busqueda, cajaContacto);
+        mostrarPrimero();
         Button btnSig = new Button("Siguiente");
         btnSig.setOnAction(e -> {
             if (!contactos.isEmpty()) {
@@ -65,9 +89,9 @@ public class verContactos extends Application {
                 }
             }
         });
-       
+
         HBox botones = new HBox();
-        botones.getChildren().addAll( btnSig);
+        botones.getChildren().addAll(btnSig);
         root.getChildren().add(botones);
 
         Scene scene = new Scene(root, 600, 250);
@@ -103,6 +127,18 @@ public class verContactos extends Application {
             });
             cajaContacto.getChildren().addAll(lblNombre, lblApellido, lblTelefono, ver);
 
+        }
+    }
+
+    private void mostrarPrimero() {
+        System.out.println(contactos.size());
+        if (!contactos.isEmpty()) {
+            if (iterator.hasNext()) {
+                System.out.println("hola");
+                Contacto c = iterator.next();
+                mostrarContactoActual(c);
+
+            }
         }
     }
 
