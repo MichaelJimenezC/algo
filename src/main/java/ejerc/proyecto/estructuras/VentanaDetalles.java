@@ -8,7 +8,9 @@ import Objetos.Contacto;
 import Objetos.ContactoPersona;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -29,6 +31,7 @@ public class VentanaDetalles extends Application {
     public void start(Stage primaryStage) {
         VBox root = new VBox();
         Contacto c = verContactos.contactoSeleccionado;
+
         if (c instanceof ContactoPersona) {
             ContactoPersona cp = (ContactoPersona) c;
 
@@ -63,10 +66,26 @@ public class VentanaDetalles extends Application {
                 }
 
             }
-            root.getChildren().addAll(lblNombre,lblApellido,vboxTelefonos,vboxEmails);
-            
+            root.getChildren().addAll(lblNombre, lblApellido, vboxTelefonos, vboxEmails);
 
         }
+        HBox botones = new HBox();
+        Button btnEliminar = new Button("Eliminar");
+        btnEliminar.setOnAction(e -> {
+            for (Usuario usuario : App.listaUsuarios) {
+                System.out.println(usuario);
+                if (usuario.equals(App.usuario)) {
+                    usuario.getContactos().remove(verContactos.contactoSeleccionado);
+
+                    break;
+
+                }
+            }
+        });
+        Button btnEditar = new Button("Editar");
+        botones.getChildren().addAll(btnEliminar, btnEditar);
+        root.getChildren().add(botones);
+
         Scene scene = new Scene(root, 600, 250);
         primaryStage.setTitle("Ver Contactos");
         primaryStage.setScene(scene);
