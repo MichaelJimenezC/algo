@@ -51,7 +51,7 @@ public class Menu extends Application {
       
       public void mostrarContactos(){
           try{
-              ListadeContactos mostrarContacto = new ListadeContactos();
+              verContactos mostrarContacto = new verContactos();
               mostrarContacto.start(new Stage());
           }catch(Exception ex){
           }

@@ -3,6 +3,8 @@ package ejerc.proyecto.estructuras;
 import Objetos.Contacto;
 import Objetos.ContactoEmpresa;
 import Objetos.ContactoPersona;
+import static ejerc.proyecto.estructuras.App.listaUsuarios;
+import espol.utilidades.Archivos;
 import espol.utilidades.DoubleLinkedList;
 import espol.utilidades.LinkedList;
 import java.io.File;
@@ -220,8 +222,14 @@ public class CrearContacto extends Application {
                 // Crear un objeto ContactoPersona
                 ContactoPersona nuevoContactoPersona = new ContactoPersona(apellido, fechaCumpleanos, nombre, fotos, direcciones, emails, numeros, redes);
 
-                contactos.add(nuevoContactoPersona);
-                guardarContactosEnArchivo();
+                for (Usuario usuario : App.listaUsuarios) {
+                    System.out.println(usuario);
+                    if (usuario.equals(App.usuario)) {
+                        usuario.getContactos().add(nuevoContactoPersona);
+                        break;
+                    }
+                }
+                Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");
                 System.out.println("Se guardó archivo");
                 mostrarAlerta();
                 Stage stageGuardar = (Stage) btn_guardar.getScene().getWindow();
@@ -314,9 +322,9 @@ public class CrearContacto extends Application {
 
     private void guardarContactosEnArchivo() {
         try {
-            FileOutputStream fileOut = new FileOutputStream("contactos.ser");
+            FileOutputStream fileOut = new FileOutputStream("usuarios.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(contactos);
+            out.writeObject(App.listaUsuarios);
             out.close();
             fileOut.close();
         } catch (IOException i) {

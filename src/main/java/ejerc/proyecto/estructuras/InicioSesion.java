@@ -23,22 +23,23 @@ import javafx.stage.Stage;
  *
  * @author crist
  */
-public class InicioSesion extends Application{
-     @Override
+public class InicioSesion extends Application {
+
+    @Override
     public void start(Stage primaryStage) {
-        TextField txt_correo= new TextField();
+        TextField txt_correo = new TextField();
         Button btn_inicioSesion = new Button("Inicio de Sesión");
-        Label lbl_correo= new Label("Ingrese su correo: ");
-        Label lbl_clave=new Label("Ingrese su clave:   ");
-        TextField txt_clave= new TextField();
-        Button btn_volver= new Button("Volver");
-        Label lbl_Registro= new Label("Iniciar");
+        Label lbl_correo = new Label("Ingrese su correo: ");
+        Label lbl_clave = new Label("Ingrese su clave:   ");
+        TextField txt_clave = new TextField();
+        Button btn_volver = new Button("Volver");
+        Label lbl_Registro = new Label("Iniciar");
         Font fuente = Font.font("Verdana", FontWeight.EXTRA_BOLD, 25);
         lbl_Registro.setFont(fuente);
         BorderPane.setAlignment(lbl_Registro, Pos.CENTER);
-        HBox horizontal1=new HBox();
-        HBox horizontal2=new HBox();
-        VBox vertical1=new VBox();
+        HBox horizontal1 = new HBox();
+        HBox horizontal2 = new HBox();
+        VBox vertical1 = new VBox();
         btn_inicioSesion.setAlignment(Pos.CENTER);
         vertical1.setAlignment(Pos.CENTER);
         horizontal1.getChildren().add(lbl_correo);
@@ -54,7 +55,19 @@ public class InicioSesion extends Application{
         btn_volver.setStyle("-fx-background-color: red; -fx-text-fill: white;");
         btn_volver.setOnMouseClicked(e -> primaryStage.close());
         vertical1.setSpacing(10);
-        btn_inicioSesion.setOnMouseClicked(e -> mostrarVentanaMenu() );
+        btn_inicioSesion.setOnMouseClicked(e -> {
+
+            String user = txt_correo.getText().trim();
+            String contra = txt_clave.getText().trim();
+            App.usuario = App.verificarUsuario(user, contra);
+            if (App.usuario != null) {
+                Stage stageGuardar = (Stage) btn_inicioSesion.getScene().getWindow();
+                stageGuardar.close();
+                mostrarVentanaMenu();
+                
+            }
+
+        });
         BorderPane root = new BorderPane();
         root.setTop(lbl_Registro);
         root.setCenter(vertical1);
@@ -68,7 +81,8 @@ public class InicioSesion extends Application{
     public static void main(String[] args) {
         launch(args);
     }
-    public void mostrarVentanaMenu(){
+
+    public void mostrarVentanaMenu() {
         try {
             Menu VentanaMenu = new Menu();
             VentanaMenu.start(new Stage());
