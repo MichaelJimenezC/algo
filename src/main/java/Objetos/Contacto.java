@@ -16,21 +16,21 @@ import java.io.Serializable;
  */
 public class Contacto implements Serializable{
     private String nombre;
-    private DoubleLinkedList foto;
-    private LinkedList direccion;
-    private LinkedList emailPersonal;
-    private LinkedList numerosTelefonicos;
-    private LinkedList redesSociales;
-    private LinkedList contactosRelacionados;
+    private DoubleLinkedList<String> foto;
+    private LinkedList<String> direccion;
+    private LinkedList<String> emailPersonal;
+    private LinkedList<String> numerosTelefonicos;
+    private LinkedList<String> redesSociales;
+    private LinkedList<Contacto> contactosRelacionados;
 
-    public Contacto(String nombre, DoubleLinkedList foto, LinkedList direccion, LinkedList emailPersonal, LinkedList numerosTelefonicos, LinkedList redesSociales ) {
+    public Contacto(String nombre, DoubleLinkedList<String> foto, LinkedList<String> direccion, LinkedList<String> emailPersonal, LinkedList<String> numerosTelefonicos, LinkedList<String> redesSociales) {
         this.nombre = nombre;
         this.foto = foto;
         this.direccion = direccion;
         this.emailPersonal = emailPersonal;
         this.numerosTelefonicos = numerosTelefonicos;
         this.redesSociales = redesSociales;
-        this.contactosRelacionados = new LinkedList<>();
+        this.contactosRelacionados = new LinkedList<>() ;
     }
 
     public String getNombre() {
@@ -41,53 +41,55 @@ public class Contacto implements Serializable{
         this.nombre = nombre;
     }
 
-    public DoubleLinkedList getFoto() {
+    public DoubleLinkedList<String> getFoto() {
         return foto;
     }
 
-    public void setFoto(DoubleLinkedList foto) {
+    public void setFoto(DoubleLinkedList<String> foto) {
         this.foto = foto;
     }
 
-    public LinkedList getDireccion() {
+    public LinkedList<String> getDireccion() {
         return direccion;
     }
 
-    public void setDireccion(LinkedList direccion) {
+    public void setDireccion(LinkedList<String> direccion) {
         this.direccion = direccion;
     }
 
-    public LinkedList getEmailPersonal() {
+    public LinkedList<String> getEmailPersonal() {
         return emailPersonal;
     }
 
-    public void setEmailPersonal(LinkedList emailPersonal) {
+    public void setEmailPersonal(LinkedList<String> emailPersonal) {
         this.emailPersonal = emailPersonal;
     }
 
-    public LinkedList getNumerosTelefonicos() {
+    public LinkedList<String> getNumerosTelefonicos() {
         return numerosTelefonicos;
     }
 
-    public void setNumerosTelefonicos(LinkedList numerosTelefonicos) {
+    public void setNumerosTelefonicos(LinkedList<String> numerosTelefonicos) {
         this.numerosTelefonicos = numerosTelefonicos;
     }
 
-    public LinkedList getRedesSociales() {
+    public LinkedList<String> getRedesSociales() {
         return redesSociales;
     }
 
-    public void setRedesSociales(LinkedList redesSociales) {
+    public void setRedesSociales(LinkedList<String> redesSociales) {
         this.redesSociales = redesSociales;
     }
 
-    public LinkedList getContactosRelacionados() {
+    public LinkedList<Contacto> getContactosRelacionados() {
         return contactosRelacionados;
     }
 
-    public void setContactosRelacionados(LinkedList contactosRelacionados) {
+    public void setContactosRelacionados(LinkedList<Contacto> contactosRelacionados) {
         this.contactosRelacionados = contactosRelacionados;
     }
+
+    
     
 
 }

@@ -16,12 +16,13 @@ public class ContactoPersona extends Contacto implements Serializable{
         private String apellido;
         private String fechaCumpleanos;
 
-    public ContactoPersona(String apellido, String fechaCumpleanos, String nombre, DoubleLinkedList foto, LinkedList direccion, LinkedList emailPersonal, LinkedList numerosTelefonicos, LinkedList redesSociales) {
+    public ContactoPersona(String apellido, String fechaCumpleanos, String nombre, DoubleLinkedList<String> foto, LinkedList<String> direccion, LinkedList<String> emailPersonal, LinkedList<String> numerosTelefonicos, LinkedList<String> redesSociales) {
         super(nombre, foto, direccion, emailPersonal, numerosTelefonicos, redesSociales);
         this.apellido = apellido;
         this.fechaCumpleanos = fechaCumpleanos;
-        
     }
+
+    
 
     public String getApellido() {
         return apellido;

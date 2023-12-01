@@ -210,10 +210,10 @@ public class CrearContacto extends Application {
                     apellido = contenidosTextFields.get("Apellido:").getFirst();
                 }
 
-                LinkedList numeros = contenidosTextFields.get("Numero:");
-                LinkedList direcciones = contenidosTextFields.get("Direccion:");
-                LinkedList emails = contenidosTextFields.get("e-mail:");
-                LinkedList redes = contenidosTextFields.get("Redes:");
+                LinkedList<String> numeros = contenidosTextFields.get("Numero:");
+                LinkedList<String> direcciones = contenidosTextFields.get("Direccion:");
+                LinkedList<String> emails = contenidosTextFields.get("e-mail:");
+                LinkedList<String> redes = contenidosTextFields.get("Redes:");
                 String fechaCumpleanos = "";
                 if (!contenidosTextFields.get("Fecha Cumpleaños:").isEmpty()) {
                     fechaCumpleanos = contenidosTextFields.get("Fecha Cumpleaños:").getFirst();
@@ -225,8 +225,11 @@ public class CrearContacto extends Application {
                 for (Usuario usuario : App.listaUsuarios) {
                     System.out.println(usuario);
                     if (usuario.equals(App.usuario)) {
-                        usuario.getContactos().add(nuevoContactoPersona);
-                        break;
+                        if (!usuario.getContactos().contains(nuevoContactoPersona)) {
+                            usuario.getContactos().add(nuevoContactoPersona);
+
+                            break;
+                        }
                     }
                 }
                 Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");

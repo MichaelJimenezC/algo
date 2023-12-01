@@ -13,20 +13,23 @@ import java.io.Serializable;
  * @author Lenovo
  */
 public class ContactoEmpresa extends Contacto implements Serializable{
-    private String paginaweb;
+    private LinkedList<String> paginaweb;
 
-    public ContactoEmpresa(String paginaweb, String nombre, DoubleLinkedList foto, LinkedList direccion, LinkedList emailPersonal, LinkedList numerosTelefonicos, LinkedList redesSociales) {
+    public ContactoEmpresa(LinkedList<String> paginaweb, String nombre, DoubleLinkedList<String> foto, LinkedList<String> direccion, LinkedList<String> emailPersonal, LinkedList<String> numerosTelefonicos, LinkedList<String> redesSociales) {
         super(nombre, foto, direccion, emailPersonal, numerosTelefonicos, redesSociales);
         this.paginaweb = paginaweb;
     }
 
-    public String getPaginaweb() {
+    public LinkedList<String> getPaginaweb() {
         return paginaweb;
     }
 
-    public void setPaginaweb(String paginaweb) {
+    public void setPaginaweb(LinkedList<String> paginaweb) {
         this.paginaweb = paginaweb;
     }
+
+    
+    
 
    
     
